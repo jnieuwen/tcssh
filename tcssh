@@ -1,0 +1,17 @@
+#! /usr/bin/env bash
+
+
+MYWINDOWNAME="tcssh-$(date +'%s')"
+
+tmux new-window -n "${MYWINDOWNAME}"
+
+for MYHOST in "$@"
+do
+    tmux split-window -t "${MYWINDOWNAME}" ssh "${MYHOST}"
+    tmux select-layout -t "${MYWINDOWNAME}" tiled
+done
+
+tmux kill-pane -t "${MYWINDOWNAME}".0
+tmux select-layout -t "${MYWINDOWNAME}" tiled
+
+tmux set-window-option -t "${MYWINDOWNAME}" synchronize-panes
