@@ -1,0 +1,7 @@
+#! /usr/bin/env bash
+
+for MYSESSION in "$@"
+do
+    tmux new-session -d -s "${MYSESSION}"
+done
+
