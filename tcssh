@@ -10,7 +10,9 @@ else
     then
         MYWINDOWNAME=${1:2}
     else
-        MYWINDOWNAME="tcssh-$(date +'%s')"
+#        tmux display-message -p '#W'
+        MYWINDOWNAMEPRE=$(tmux display-message -p '#W')
+        MYWINDOWNAME="${MYWINDOWNAMEPRE}-$(date +'%s')"
     fi
 fi  
 
